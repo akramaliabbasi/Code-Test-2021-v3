@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 use DTApi\Repository\BookingRepository;
 
 /**
+* Instead of injecting the BookingRepository in the BookingController we will be injecting the BookingRepositoryInterface 
+  and then let the Service Container decide which repository will be used  
+*/
+use App\Repositories\Interfaces\BookingRepositoryInterface;
+
+/**
  * Class BookingController
  * @package DTApi\Http\Controllers
  */
@@ -35,6 +41,8 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
+       // if($user_id = $request->session()->get('user_id')) // what business or requirment is here? I guess it should be VerifyCsrfToken based request
+	                                                         // and userid should go through session based if it is registered user
         if($user_id = $request->get('user_id')) {
 
             $response = $this->repository->getUsersJobs($user_id);

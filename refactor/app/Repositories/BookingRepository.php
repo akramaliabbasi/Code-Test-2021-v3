@@ -26,12 +26,16 @@ use Monolog\Handler\StreamHandler;
 use Illuminate\Support\Facades\Log;
 use Monolog\Handler\FirePHPHandler;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\Interfaces\BookingRepositoryInterface;
 
 /**
  * Class BookingRepository
  * @package DTApi\Repository
  */
-class BookingRepository extends BaseRepository
+
+
+//class BookingRepository implements BookingRepositoryInterface // If I had only iterface I have used like this way
+class BookingRepository extends BaseRepository implements BookingRepositoryInterface
 {
 
     protected $model;
